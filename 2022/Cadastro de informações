@@ -1,0 +1,411 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <locale.h>
+
+struct Cadastro {
+    char nome[50];
+    char cpf[20];
+    char email[50];
+    char telefone[20];
+    char endereco[80];
+    char data[12];
+}dados;
+
+struct Modificar{
+    char nome[50];
+    char cpf[20];
+    char email[50];
+    char telefone[20];
+    char endereco[80];
+    char data[12];
+}dadosModif;
+
+void Cadastrar(){
+
+    setlocale(LC_ALL, "");
+    FILE *fp = fopen("Bdados.txt", "ab+");
+
+    system("cls");
+
+    fflush(stdin);
+    printf("Informe seu nome:\n ");
+    gets(dados.nome);
+
+    printf("Informe o CPF:\n ");
+    fflush(stdin);
+    gets(dados.cpf);
+
+    printf("Informe o email:\n ");
+    gets(dados.email);
+
+    printf("Informe o telefone:\n ");
+    gets(dados.telefone);
+
+    printf("Informe o endereço (no formato: Cidade, Bairro, Rua e Número):\n ");
+    gets(dados.endereco);
+
+    printf("Informe a data de nascimento:\n ");
+    fflush(stdin);
+    gets(dados.data);
+
+    fwrite(&dados, sizeof(struct Cadastro), 1, fp);
+    fclose(fp);
+    getch();
+    retorna();
+}
+
+void Procura_nome(){
+    setlocale(LC_ALL, "");
+    int aux=0;
+    char nome[30];
+
+    system("cls");
+
+    fflush(stdin);
+    printf("\nDigite o nome:");
+    gets(nome);
+
+    FILE *fp=fopen("Bdados.txt", "rb");
+    while(fread(&dados,sizeof(dados),1,fp)==1){
+        if(strcmp(dados.nome,nome)==0){
+            aux++;
+            printf("\n Nome: %s", dados.nome);
+            printf("\n CPF: %s", dados.cpf);
+            printf("\n Email: %s", dados.email);
+            printf("\n Telefone: %s", dados.telefone);
+            printf("\n Endereço: %s", dados.endereco);
+            printf("\n Data de nascimento: %s", dados.data);
+        }
+    }
+    if(aux==0){
+        printf("\nCadastro não encontrado.");
+        getchar();
+    }
+    fclose(fp);
+    retorna();
+}
+
+void Procura_CPF(){
+    setlocale(LC_ALL, "");
+    int aux=0;
+    char cpf[20];
+
+    system("cls");
+
+    fflush(stdin);
+    printf("\nDigite o CPF:");
+    gets(cpf);
+
+    FILE *fp=fopen("Bdados.txt", "rb");
+    while(fread(&dados,sizeof(dados),1,fp)==1){
+        if(strcmp(dados.cpf,cpf)==0){
+            aux++;
+            printf("\n Nome: %s", dados.nome);
+            printf("\n CPF: %s", dados.cpf);
+            printf("\n Email: %s", dados.email);
+            printf("\n Telefone: %s", dados.telefone);
+            printf("\n Endereço: %s", dados.endereco);
+            printf("\n Data de nascimento: %s", dados.data);
+        }
+    }
+    if(aux==0){
+        printf("\nCadastro não encontrado.");
+        getchar();
+    }
+    fclose(fp);
+    retorna();
+}
+
+void Procura_email(){
+    setlocale(LC_ALL, "");
+    int aux=0;
+    char email[50];
+
+    system("cls");
+
+    fflush(stdin);
+    printf("\nDigite o E-mail:");
+    gets(email);
+
+    FILE *fp=fopen("Bdados.txt", "rb");
+    while(fread(&dados,sizeof(dados),1,fp)==1){
+        if(strcmp(dados.email,email)==0){
+            aux++;
+            printf("\n Nome: %s", dados.nome);
+            printf("\n CPF: %s", dados.cpf);
+            printf("\n Email: %s", dados.email);
+            printf("\n Telefone: %s", dados.telefone);
+            printf("\n Endereço: %s", dados.endereco);
+            printf("\n Data de nascimento: %s", dados.data);
+        }
+    }
+    if(aux==0){
+        printf("\nCadastro não encontrado.");
+        getchar();
+    }
+    fclose(fp);
+    retorna();
+}
+
+void Procura_telefone(){
+    setlocale(LC_ALL, "");
+    int aux=0;
+    char fone[20];
+
+    system("cls");
+
+    fflush(stdin);
+    printf("\nDigite o Telefone:");
+    gets(fone);
+
+    FILE *fp=fopen("Bdados.txt", "rb");
+    while(fread(&dados,sizeof(dados),1,fp)==1){
+        if(strcmp(dados.telefone,fone)==0){
+            aux++;
+            printf("\n Nome: %s", dados.nome);
+            printf("\n CPF: %s", dados.cpf);
+            printf("\n Email: %s", dados.email);
+            printf("\n Telefone: %s", dados.telefone);
+            printf("\n Endereço: %s", dados.endereco);
+            printf("\n Data de nascimento: %s", dados.data);
+        }
+    }
+    if(aux==0){
+        printf("\nCadastro não encontrado.");
+        getchar();
+    }
+    fclose(fp);
+    retorna();
+}
+
+void Procura_endereco(){
+    setlocale(LC_ALL, "");
+    int aux=0;
+    char endereco[80];
+
+    system("cls");
+
+    fflush(stdin);
+    printf("\nDigite o Endereço:");
+    gets(endereco);
+
+    FILE *fp=fopen("Bdados.txt", "rb");
+    while(fread(&dados,sizeof(dados),1,fp)==1){
+        if(strcmp(dados.endereco,endereco)==0){
+            aux++;
+            printf("\n Nome: %s", dados.nome);
+            printf("\n CPF: %s", dados.cpf);
+            printf("\n Email: %s", dados.email);
+            printf("\n Telefone: %s", dados.telefone);
+            printf("\n Endereço: %s", dados.endereco);
+            printf("\n Data de nascimento: %s", dados.data);
+        }
+    }
+    if(aux==0){
+        printf("\nCadastro não encontrado.");
+        getchar();
+    }
+    fclose(fp);
+    retorna();
+}
+
+void Procura_data(){
+    setlocale(LC_ALL, "");
+    int aux=0;
+    char data[12];
+
+    system("cls");
+
+    fflush(stdin);
+    printf("\nDigite a Data de Nascimento:");
+    gets(data);
+
+    FILE *fp=fopen("Bdados.txt", "rb");
+    while(fread(&dados,sizeof(dados),1,fp)==1){
+        if(strcmp(dados.data,data)==0){
+            aux++;
+            printf("\n Nome: %s", dados.nome);
+            printf("\n CPF: %s", dados.cpf);
+            printf("\n Email: %s", dados.email);
+            printf("\n Telefone: %s", dados.telefone);
+            printf("\n Endereço: %s", dados.endereco);
+            printf("\n Data de nascimento: %s", dados.data);
+        }
+    }
+    if(aux==0){
+        printf("\nCadastro não encontrado.");
+        getchar();
+    }
+    fclose(fp);
+    retorna();
+}
+
+void Alterar(){
+    setlocale(LC_ALL, "");
+    int aux=0;
+    char alt[30];
+
+    system("cls");
+
+    fflush(stdin);
+    printf("\nDigite o nome do usuário que deseja Alterar:");
+    gets(alt);
+
+    FILE *fp=fopen("Bdados.txt", "rb");
+    FILE *fpmod=fopen("auxiliar.txt", "ab+");
+
+    while(fread(&dados,sizeof(dados),1,fp)==1){
+        if(strcmp(dados.nome, alt)==0){
+            aux++;
+            printf("\n Nome: %s", dados.nome);
+            printf("\n CPF: %s", dados.cpf);
+            printf("\n Email: %s", dados.email);
+            printf("\n Telefone: %s", dados.telefone);
+            printf("\n Endereço: %s", dados.endereco);
+            printf("\n Data de nascimento: %s", dados.data);
+
+            fflush(stdin);
+            printf("\n\nDigite a alteração do nome:");
+            gets(dadosModif.nome);
+            fflush(stdin);
+            printf("\nDigite a alteração do CPF:");
+            gets(dadosModif.cpf);
+            printf("\nDigite a alteração do e-mail:");
+            gets(dadosModif.email);
+            fflush(stdin);
+            printf("\nDigite a alteração do telefone:");
+            gets(dadosModif.telefone);
+            fflush(stdin);
+            printf("\nDigite a alteração do endereço:");
+            gets(dadosModif.endereco);
+            printf("\nDigite a alteração da data de nascimento:");
+            gets(dadosModif.data);
+
+            fwrite(&dadosModif, sizeof(struct Modificar),1, fpmod);
+        }
+        else if(strcmp(dados.nome, alt)!=0){
+            fwrite(&dados, sizeof(struct Cadastro),1, fpmod);
+        }
+        if(aux==0){
+            printf("\nCadastro não encontrado.");
+            getchar();
+        }
+    fclose(fp);
+    fclose(fpmod);
+
+    remove("Bdados.txt");
+    rename("auxiliar.txt", "Bdados.txt");
+
+    retorna();
+    }
+}
+
+void Excluir(){
+
+    setlocale(LC_ALL, "");
+
+    int aux=0;
+    char exclui[30];
+
+    system("cls");
+
+    fflush(stdin);
+    printf("\nDigite o nome do usuário que deseja deletar: ");
+    gets(exclui);
+
+    FILE *fp=fopen("Bdados.txt", "rb");
+    FILE *fpmod=fopen("auxiliar.txt", "ab+");
+
+    while(fread(&dados,sizeof(dados),1,fp)==1){
+        if(strcmp(dados.nome, exclui)==0){
+            aux++;
+            printf("\n Nome: %s", dados.nome);
+            printf("\n CPF: %s", dados.cpf);
+            printf("\n Email: %s", dados.email);
+            printf("\n Telefone: %s", dados.telefone);
+            printf("\n Endereço: %s", dados.endereco);
+            printf("\n Data de nascimento: %s", dados.data);
+
+            printf("\nDELETANDO...");
+        }
+        else if(strcmp(dados.nome, exclui)!=0){
+        fwrite(&dados, sizeof(struct Cadastro),1, fpmod);
+        }
+    }
+    if(aux==0){
+        printf("\nDesculpe, cadastro não encontrado.");
+        getchar();
+    }
+    fclose(fp);
+    fclose(fpmod);
+
+    remove("Bdados.txt");
+    rename("auxiliar.txt", "Bdados.txt");
+
+    retorna();
+}
+
+void retorna()
+{
+    setlocale(LC_ALL, "");
+    char op;
+
+    fflush(stdin);
+    printf("\n\nDeseja fazer algo a mais?\n(Digite (s) para SIM e retornar ao menu ou (n) para NÃO e encerrar o programa):\n");
+    scanf("%c", &op);
+
+        switch(op)
+        {
+            case 's':
+            system("cls");
+            main();
+
+            case 'n':
+            printf("encerrando.");
+            exit(0);
+        }
+}
+
+
+int main(){
+    setlocale(LC_ALL, "");
+    int opcao;
+    do {
+        printf("\n ******* BANCO DE DADOS *******\n");
+        printf("\n [ 1 ] Cadastrar Dados");
+        printf("\n [ 2 ] Procurar por nome");
+        printf("\n [ 3 ] Procurar por CPF");
+        printf("\n [ 4 ] Procurar por e-mail");
+        printf("\n [ 5 ] Procurar por telefone");
+        printf("\n [ 6 ] Procurar por endereço");
+        printf("\n [ 7 ] Procurar por data de nascimento");
+        printf("\n [ 8 ] Alterar Dados");
+        printf("\n [ 9 ] Excluir Dados");
+        printf("\n [ 0 ] Encerrar o Programa");
+        printf("\n\n Opção Desejada: ");
+
+    do {
+      scanf("%d", &opcao);
+    } while ((opcao < 0) || (opcao > 9));
+
+    switch (opcao) {
+        case 0: exit(0);            break;
+        case 1: Cadastrar();        break;
+        case 2: Procura_nome();     break;
+        case 3: Procura_CPF();      break;
+        case 4: Procura_email();    break;
+        case 5: Procura_telefone(); break;
+        case 6: Procura_endereco(); break;
+        case 7: Procura_data();     break;
+        case 8: Alterar();          break;
+        case 9: Excluir();          break;
+        default:
+        printf("\nOpção Inválida...");
+        retorna();
+        break;
+    }
+    } while (opcao != 0);
+
+    return 0;
+}
