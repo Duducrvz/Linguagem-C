@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <MMsystem.h>
+#include <string.h>
+
+#pragma pack(push,1)
+struct riff
+{
+    int chunkID;
+    int chunkSize;
+    int format;
+}riff1;
+#pragma pack(pop)
+
+#pragma pack(push,1)
+struct fmt
+{
+    int subChunk1ID;
+    int subChunk1Size;
+    short int audioFormat;
+    short int numChannels;
+    int sampleRate;
+    int byteRate;
+    short int blockAlign;
+    short int bitsPerSample;
+    short int x;
+    int subChunk3ID;
+    int subChunk3Size;
+    int FDD;
+}fmt1;
+#pragma pack(pop)
+
+#pragma pack(push,1)
+struct data
+{
+    int subChunk2ID;
+    int subChunk2Size;
+}data1;
+#pragma pack(pop)
+
+int main()
+{
+    FILE *fp;
+    FILE *fp_cortado;
+
+    char nome_arquivo[100];
+    char nome_arquivo_cortado[100];
+    int tempo_inicio;
+    int tempo_final;
+    int tempo;
+    short int sample;
+
+    printf("Qual o nome do arquivo desejado:\n");
+    gets(nome_arquivo);
+
+    strcpy(nome_arquivo_cortado,nome_arquivo);
+    strcat(nome_arquivo_cortado,"_cortado.wav");
+    strcat(nome_arquivo,".wav");
+
+    fp = fopen(nome_arquivo,"rb");
+    if(fp == NULL)
+    {
+        printf("Arquivo nao encontrado");
+        return 0;
+    }
+    fp_cortado = fopen(nome_arquivo_cortado,"wb");
+
+    fread(&riff1, sizeof(riff1),1,fp);
+    fread(&fmt1, sizeof(fmt1),1,fp);
+    fread(&data1, sizeof(data1),1,fp);
+
+    fwrite(&riff1, sizeof(riff1),1,fp_cortado);
+    fwrite(&fmt1, sizeof(fmt1),1,fp_cortado);
+    fwrite(&data1, sizeof(data1),1,fp_cortado);
+
+    printf("************************* Informacoes Sobre o audio *************************\n");
+    printf("    Nome do Arquivo: %s\n",nome_arquivo);
+    printf("    ID riff: %c\n",riff1.chunkID);
+    printf("    Tamanho do Chunk riff: %i\n",riff1.chunkSize);
+    printf("    Formato: %c\n",riff1.format);
+    printf("    ID fmt: %c\n",fmt1.subChunk1ID);
+    printf("    Tamanho do Chunk fmt: %i\n",fmt1.subChunk1Size);
+    printf("    Formato do Audio(1 = sem compressao): %i\n",fmt1.audioFormat);
+    printf("    Numero de canais(Mono = 1, Estereo = 2): %i\n",fmt1.numChannels);
+    printf("    Sample rate: %i\n",fmt1.sampleRate);
+    printf("    ByteRate: %i\n",fmt1.byteRate);
+    printf("    BlockAlign: %i\n",fmt1.blockAlign);
+    printf("    Bits por sample: %i\n",fmt1.bitsPerSample);
+    printf("    Parametro extra: %i\n",fmt1.x);
+    printf("    ID data: %c\n",data1.subChunk2ID);
+    printf("    Tamanho do Chunk data: %i\n",data1.subChunk2Size);
+    printf("*****************************************************************************\n");
+
+    printf("Tempo inicial:");
+    scanf("%i",&tempo_inicio);
+    fflush(stdin);
+    printf("Tempo final:");
+    scanf("%i",&tempo_final);
+    fflush(stdin);
+    tempo = tempo_final - tempo_inicio;
+    printf("tempo do corte: %i", tempo);
+
+    fseek(fp,fmt1.byteRate*tempo_inicio,SEEK_SET);
+
+    for(int i = 0; i < fmt1.byteRate*tempo;i++)
+    {
+        fread(&sample,1,1,fp);
+        fwrite(&sample,1,1,fp_cortado);
+    }
+    fclose(fp);
+    fclose(fp_cortado);
+    return 0;
+}
