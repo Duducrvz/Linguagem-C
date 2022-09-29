@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define linha 15
+#define coluna 15
+int main()
+{
+    int mtr_1 [linha][coluna];
+    int mtr_2 [linha][coluna];
+    int li, co;
+    int *p;
+
+    for(li=0; li<linha; li++)
+    {
+        for(co=0; co<coluna; co++)
+        {
+            mtr_1[li][co]=rand()%80;
+        }
+    }
+    printf("Nome: Eduardo da Cruz S.\nTurma: 4224\n");
+    printf("MATRIZ 1: \n");
+    printf("\n");
+    for(li=0; li<linha; li++)
+    {
+        for(co=0; co<coluna; co++)
+        {
+             printf("%02i  ",mtr_1[li][co]);
+        }
+        printf("\n");
+    }
+    for(li=0; li<linha; li++)
+    {
+        for(co=0; co<coluna; co++)
+        {
+            p=mtr_1[linha-li-1][coluna-co-1];
+            mtr_2[li][co] = p;
+        }
+    }
+    printf("\n");
+    printf("MATRIZ 2 :\n");
+    printf("\n");
+    for(li=0; li<linha; li++)
+    {
+        for(co=0; co<coluna; co++)
+        {
+             printf("%02i  ",mtr_2[li][co]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
