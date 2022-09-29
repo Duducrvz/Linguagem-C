@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main(void){
+    char str1[31], str2[31];
+    int i, j, fim;
+
+    printf("Escreva sua frase, com no maximo 30 caracteres.\n");
+    gets(str1);
+
+        //determinei o final da string primeiro.
+    fim = 0;
+        while (str1[fim] != '\0' && str1[fim] != '\n'){
+            fim++;
+        }
+
+        //depois determinei a inversa, utilizando while.
+    i = fim -1;
+    j = 0;
+        while (j<fim){
+            str2[j] = str1[i];
+            i--;
+            j++;
+        }
+    str2[fim] = '\0';
+    printf("inversa:\n%s\n", str2);
+}
