@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main(void){
+    int nota1, nota2, nota3;
+
+    printf("\nDigite a primeira nota: ");
+    scanf("%d", &nota1);
+
+    printf("\nDigite a segunda nota: ");
+    scanf("%d", &nota2);
+
+    printf("\nDigite a terceira nota: ");
+    scanf("%d", &nota3);
+
+    int media = (nota1 + nota2 + nota3)/3;
+
+    printf("Sua media foi:\n");
+
+    switch (media){
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            printf("Insuficiente!");
+            break;
+
+        case 6:
+        case 7:
+        case 8:
+            printf("Mediocre!");
+            break;
+        case 9:
+        case 10:
+            printf("Excelente!");
+            break;
+            default:
+            printf("Numero inválido.");
+            break;
+    }
+    return 0;
+}
