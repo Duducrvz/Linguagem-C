@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+
+int contagem(char str[]){
+	int i=0, cont = 0;
+	for(i=0;i<50;i++)
+	{
+		if(str[i] != '\0')
+			cont++;
+		else
+			return cont;
+	}
+return cont;
+}
+
+int main(){
+
+    char str1[100];
+    char str2[100];
+    char str3[200];
+    int conta1, conta2, i, j;
+
+    printf("Digite a primeira string:\n");
+    gets(str1);
+
+    printf("Digite a segunda string:\n");
+    gets(str2);
+
+    printf("\n");
+
+    conta1 = contagem(str1);
+    conta2 = contagem(str2);
+
+    printf("A primeira string eh\n '%s' com tamanho %i\n", str1, conta1);
+    printf("A segunda string eh\n '%s' com tamanho %i\n", str2, conta2);
+
+        if(conta1 == conta2){
+            printf("As strings possuem o mesmo tamanho.\n");
+        }
+        else if(conta1 > conta2){
+            printf("A primeira eh maior que a segunda string.\n");
+        }
+        else{
+            printf("A segunda eh maior que a primeira string.\n");
+        }
+
+    j = 0;
+
+    printf("As concatenadas sao:\n");
+
+        for(i=0; i<conta1; i++){
+            str3[j]=str1[i];
+            j++;    
+        }
+        for(i=0; i<conta2; i++){
+            str3[j]=str2[i];
+            j++;
+        }
+    printf("%s", str3);
+}
