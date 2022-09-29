@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int i, j, matrizoriginal[20][20], matrizpar[20][20], matrizimpar[20][20];
+        for(i=0; i<20; i++){
+            for (j=0;j<20;j++){
+                matrizoriginal[i][j]=rand()%100;
+                matrizpar[i][j]=0;
+                matrizimpar[i][j]=0;
+            }
+        }
+    printf("\nMatriz Origem: \n");
+        for (i=0;i<20;i++){
+            for (j=0;j<20;j++){
+                printf("%3d",matrizoriginal[i][j]);
+        }
+            printf("\n");
+    }
+    for(i=0;i<20;i++){
+        for (j=0;j<20;j++){
+           if(matrizoriginal[i][j] %2 == 0){
+                matrizpar[i][j]= matrizoriginal[i][j];
+            }
+            else{
+                matrizimpar[i][j]= matrizoriginal[i][j];
+            }
+        }
+    }
+
+    printf("\nMatriz Par: \n");
+        for(i=0;i<20;i++){
+            for(j=0;j<20;j++){
+            printf("%3d", matrizpar[i][j]);
+        }
+            printf("\n");
+    }
+    printf("\nMatriz Impar:\n");
+    for(i=0;i<20;i++){
+        for(j=0;j<20;j++){
+            printf("%3d", matrizimpar[i][j]);
+        }
+            printf("\n");
+    }
+printf("Eduardo da Cruz S. - 4224 \n");
+return 0;
+}
