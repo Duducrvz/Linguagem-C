@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define P 5
+
+int ordena(int vetor[], char ordem)
+{
+    int i,j,k,l;
+    if(ordem == 'C' || ordem == 'c')
+    {
+        for (i = 0; i < P-1 ;i++)
+    {
+          k = i;
+          for(j = i+1 ;j < P; j++)
+          {
+            if(vetor[k] > vetor[j])
+            {
+               k = j;
+            }
+          }
+          l = vetor[k];
+          vetor[k] = vetor[i];
+          vetor[i] = l;
+     }
+    }
+    if(ordem=='D' || ordem=='d')
+    {
+        for (i = 0 ;i < P-1 ;i++)
+    {
+          k = i;
+          for(j = i+1; j < P ;j++)
+          {
+            if(vetor[k] < vetor[j])
+            {
+               k = j;
+            }
+          }
+          l = vetor[k];
+          vetor[k] = vetor[i];
+          vetor[i] = l;
+     }
+    }
+}
+int main()
+{
+    int i, j, k, l;
+    int vet[P];
+    char ordem;
+
+    printf("Digite c ou C para crescente e d ou D para decrescente:");
+    scanf("%c", &ordem);
+
+    if(ordem != 'D' && ordem != 'd' && ordem != 'C' && ordem != 'c')
+    {
+        printf("------------------------ORDEM INVALIDA------------------------ \n");
+        printf("Eduardo da Cruz S.; Turma: 4224");
+        return 0;
+    }
+
+    for(i=0;i<P;i++)
+    {
+        printf("Digite o %d vetor:",i+1);
+        scanf("%d", &vet[i]);
+    }
+    printf("\n\n------------------------Vetores digitados------------------------\n");
+    for(i=0;i<P;i++)
+    {
+        printf("\n vetor %d = %i", i+1, vet[i]);
+    }
+    ordena(vet, ordem);
+    printf("\n\n------------------------Vetores em ordem ------------------------\n");
+    for(i=0;i<P;i++)
+    {
+        printf("\n vetor %d = %i", i+1, vet[i]);
+    }
+    printf("\n\nnome:Eduardo da Cruz S.; Turma: 4224\n");
+    return 0;
+}
